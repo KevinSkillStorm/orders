@@ -1,0 +1,51 @@
+<div class="backButton">
+  <a href="#" class="backButton" routerLink="/inventory" class="btn btn-primary"
+    >&lt;&lt; Back</a
+  >
+</div>
+<h1 class="title">Current Orders Placed</h1>
+<div class="container my-5">
+  <div class="shadow-lg p-3 mb-5 bg-white rounded">
+    <p-table
+      [value]="orders"
+      [paginator]="true"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      responsiveLayout="scroll"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[10, 25, 50]"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Id</th>
+          <th>Username</th>
+          <th pSortableColumn="itemTitle" styleClass="col-2">
+            Item<p-sortIcon field="itemTitle"></p-sortIcon>
+          </th>
+          <th>Quantity</th>
+          <th>Mail Address</th>
+          <th pSortableColumn="orderDate" styleClass="col-2">
+            Date Ordered<p-sortIcon field="orderDate"></p-sortIcon>
+          </th>
+          <!-- <th>Action</th> -->
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-orders let-address>
+        <tr>
+          <td>{{ orders.orderForFulfillmentId }}</td>
+          <td>{{ orders.userName }}</td>
+          <td>{{ orders.itemTitle }}</td>
+          <td>{{ orders.quantity }}</td>
+          <td>{{ getSpecificAddress(orders.addressId) }}</td>
+          <td>{{ orders.orderDate }}</td>
+          <td>
+            <p-button label="Fulfill" (onClick)="fulfill(orders)"></p-button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="paginatorleft"> </ng-template>
+      <ng-template pTemplate="paginatorright"> </ng-template>
+    </p-table>
+  </div>
+</div>

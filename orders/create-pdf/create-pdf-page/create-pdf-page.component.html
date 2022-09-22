@@ -1,0 +1,83 @@
+<div class="backButton">
+  <a
+    href="#"
+    class="backButton"
+    routerLink="/orders-placed"
+    class="btn btn-primary"
+    >&lt;&lt; Back</a
+  >
+  <div class="title">
+    <h1>Order has been fulfilled</h1>
+    <button type="onSubmit" (click)="createManifest()">View Manifest</button>
+  </div>
+
+  <div class="container" #pdfPrint>
+    <!-- <div #keywordsInput> -->
+    <table class="table shadow-4 bg-white p-3 my-3 border">
+      <thead>
+        <tr class="d-flex border-bottom">
+          <h1 class="d-inline-flex p-2 border border-bottom">P</h1>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="d-flex justify-content-center border-bottom">
+          <br />
+          <div id="USPS">USPS PRIORITY MAIL</div>
+          <br />
+        </tr>
+
+        <tr></tr>
+        <tr class="d-flex justify-content-start">
+          <h4>From:</h4>
+          <br />
+          <br />
+          <br />
+        </tr>
+        <tr class="d-flex justify-content-center">
+          <br />
+          <div>10151 Deerwood Park Blvd., Suite 425 Jacksonville, FL 32256</div>
+          <br />
+          <br />
+          <br />
+        </tr>
+        <tr class="d-flex justify-content-start">
+          <h4>Shipment To:</h4>
+          <br />
+          <br />
+          <br />
+        </tr>
+        <tr
+          class="d-flex justify-content-center border-bottom"
+          *ngFor="let eachProperty of address"
+        >
+          <br />
+          <br />
+          <br />
+          <div>
+            {{ eachProperty.lineOne }}, {{ eachProperty.city }},
+            {{ eachProperty.state }}, {{ eachProperty.zip }},
+            {{ eachProperty.country }}
+          </div>
+          <br />
+          <br />
+          <br />
+        </tr>
+        <tr>
+          <br />
+          <h4>Delivery Confirmation</h4>
+          <br />
+        </tr>
+
+        <tr></tr>
+        <tr class="d-flex justify-content-center border-bottom">
+          <img src="/assets/images/barcode.jpg" alt="barcode" />
+        </tr>
+      </tbody>
+    </table>
+    <!-- </div> -->
+  </div>
+  <button class="manifestButton" type="onSubmit" (click)="createPdf()">
+    Download PDF
+  </button>
+</div>

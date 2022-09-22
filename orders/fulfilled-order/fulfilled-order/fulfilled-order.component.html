@@ -1,0 +1,59 @@
+<div class="backButton">
+  <a href="#" class="backButton" routerLink="/inventory" class="btn btn-primary"
+    >&lt;&lt; Back</a
+  >
+</div>
+<h1 class="title">Orders Fulfilled</h1>
+<div class="container my-5">
+  <div class="shadow-lg p-3 mb-5 bg-white rounded">
+    <p-table
+      [value]="fulfilledOrders"
+      [paginator]="true"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      responsiveLayout="scroll"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[10, 25, 50]"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Order Id</th>
+          <th>User Name</th>
+          <th>Item</th>
+          <th>Quantity</th>
+          <th>Address</th>
+          <!-- <th pSortableColumn="fulfillmentDate" styleClass="col-2">
+            Date Fulfilled<p-sortIcon field="fulfillmentDate"></p-sortIcon>
+          </th> -->
+          <!-- <th>Action</th> -->
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-fulfilledOrders>
+        <tr>
+          <td>{{ fulfilledOrders.orderId }}</td>
+          <td>{{ fulfilledOrders.userName }}</td>
+          <td>{{ fulfilledOrders.itemTitle }}</td>
+          <td>{{ fulfilledOrders.quantity }}</td>
+          <td>{{ getSpecificAddress(fulfilledOrders.addressId) }}</td>
+          <td>
+            {{
+              getDateFulfilled(
+                fulfilledOrders.itemId,
+                fulfilledOrders.orderId
+              )
+            }}
+          </td>
+
+          <!-- public int OrderForFulfillmentId { get; set; }
+          public Guid OrderId { get; set; }
+          public Guid ItemId { get; set; }
+          public int Quantity { get; set; }
+          public DateTime FulfillmentDate { get; set; } -->
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="paginatorleft"> </ng-template>
+      <ng-template pTemplate="paginatorright"> </ng-template>
+    </p-table>
+  </div>
+</div>
